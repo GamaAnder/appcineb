@@ -1,0 +1,7 @@
+{
+  "name": "appcineb",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
