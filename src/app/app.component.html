@@ -1,3 +1,64 @@
+@if(usuario){
 <ion-app>
   <ion-router-outlet></ion-router-outlet>
 </ion-app>
+}
+@else {
+
+<ion-card>
+  <ion-card-header>
+    <ion-card-title>App de cine</ion-card-title>
+    <ion-card-subtitle>Reserva de peliculas</ion-card-subtitle>
+  </ion-card-header>
+
+  @if(!crearNuevo){
+  <ion-card-content>
+    <ion-list>
+      <ion-list>
+        <ion-item>
+          <ion-input [(ngModel)]="usuarioLogin.correo" label="Email" type="email" placeholder="email@domain.com"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-input [(ngModel)]="usuarioLogin.contrasena" label="Password" type="password" value="contrasena"></ion-input>
+        </ion-item>
+
+        <ion-button (click)="login()">
+          <ion-icon name="accessibility-outline"></ion-icon>
+          Ingresar
+        </ion-button>
+        <ion-button color="warning" (click)="crearNuevoBtn()">
+          Crear cuenta
+          <ion-icon name="person-add-outline"></ion-icon>
+        </ion-button>
+
+      </ion-list>
+    </ion-list>
+  </ion-card-content>
+  }
+  @else{
+    <ion-card-content>
+    <ion-list>
+      <ion-list>
+        <ion-item>
+          <ion-input [(ngModel)]="usuarioNuevo.nombres" label="Nombre" placeholder="Nombre"></ion-input>
+        </ion-item>
+        
+        <ion-item>
+          <ion-input [(ngModel)]="usuarioNuevo.correo" label="Email" type="email" placeholder="email@domain.com"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-input [(ngModel)]="usuarioNuevo.contrasena" label="Password" type="password" value="contrasena"></ion-input>
+        </ion-item>
+
+        <ion-button (click)="crear()" color="danger">
+          <ion-icon name="accessibility-outline"></ion-icon>
+          Crear nuevo
+        </ion-button>
+        </ion-list>
+        </ion-list>
+        </ion-card-content>
+  }
+</ion-card>
+
+
+}

@@ -1,17 +1,21 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Tab 1
+      Usuarios creados
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 1</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <ion-list>
+    @for(usuario of usuarios; track usuario.idUsuario){
+    <ion-item>
+      <ion-label>{{usuario.idUsuario}}</ion-label>
+      <ion-label>{{usuario.nombres}}</ion-label>
+      <ion-label>{{usuario.correo}}</ion-label>
+      <ion-label>{{usuario.contrasena}}</ion-label>
+    </ion-item>
+    }
 
-  <app-explore-container name="Tab 1 page"></app-explore-container>
+    </ion-list>
 </ion-content>

@@ -1,17 +1,21 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Tab 3
+      Funciones disponibles
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 3</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <ion-list>
+    @for(funcion of funciones; track funcion.idFuncion){
+    <ion-item>
+      <ion-label>{{funcion.idFuncion}}</ion-label>
+      <ion-label>{{funcion.fecha | date}}</ion-label>
+      <ion-label>{{funcion.hora}}</ion-label>
+      <ion-label>{{funcion.precioEntrada}}</ion-label>
+    </ion-item>
+    }
 
-  <app-explore-container name="Tab 3 page"></app-explore-container>
+    </ion-list>
 </ion-content>
