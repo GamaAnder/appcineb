@@ -1,0 +1,343 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Reserva de Tickets</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+
+  <div class="menu-reservas">
+
+    <ion-button
+      expand="block"
+      [fill]="vista === 'reserva' ? 'solid' : 'outline'"
+      (click)="vista = 'reserva'">
+
+      <ion-icon name="ticket-outline" slot="start"></ion-icon>
+      Reservar tickets
+
+    </ion-button>
+
+    <ion-button
+      expand="block"
+      [fill]="vista === 'historial' ? 'solid' : 'outline'"
+      (click)="vista = 'historial'">
+
+      <ion-icon name="time-outline" slot="start"></ion-icon>
+      Historial
+
+    </ion-button>
+
+  </div>
+
+
+  <div *ngIf="vista === 'reserva'">
+
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Datos de la reserva</ion-card-title>
+        <ion-card-subtitle>
+          Selecciona una película y su función
+        </ion-card-subtitle>
+      </ion-card-header>
+
+      <ion-card-content>
+
+        <ion-item>
+          <ion-label position="stacked">
+            Nombre del cliente
+          </ion-label>
+
+          <ion-input
+            [(ngModel)]="cliente"
+            placeholder="Ingresa tu nombre">
+          </ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="stacked">
+            Película y función
+          </ion-label>
+
+          <ion-select
+            [(ngModel)]="funcionSeleccionada"
+            (ionChange)="cambiarFuncion()"
+            interface="action-sheet"
+            placeholder="Selecciona una función">
+
+            <ion-select-option
+              *ngFor="let funcion of funciones"
+              [value]="funcion.idFuncion">
+
+              Película #{{ funcion.idPelicula }} -
+              {{ funcion.fecha | date}} -
+              {{ funcion.hora }}
+
+            </ion-select-option>
+
+          </ion-select>
+        </ion-item>
+
+        <div class="informacion-funcion" *ngIf="funcionActual.idFuncion">
+          <p>
+            <strong>Película:</strong>
+            #{{ funcionActual.idPelicula }}
+          </p>
+
+          <p>
+            <strong>Fecha:</strong>
+            {{ funcionActual.fecha }}
+          </p>
+
+          <p>
+            <strong>Hora:</strong>
+            {{ funcionActual.hora }}
+          </p>
+
+          <p>
+            <strong>Precio por entrada:</strong>
+            Q{{ (funcionActual.precioEntrada || 0) | number:'1.2-2' }}
+          </p>
+        </div>
+
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Seleccionar asientos</ion-card-title>
+        <ion-card-subtitle>
+          Elige los asientos disponibles
+        </ion-card-subtitle>
+      </ion-card-header>
+
+      <ion-card-content>
+
+        <div class="pantalla-cine">
+          PANTALLA
+        </div>
+
+        <div class="leyenda">
+
+          <div>
+            <span class="cuadro disponible"></span>
+            Disponible
+          </div>
+
+          <div>
+            <span class="cuadro seleccionado"></span>
+            Seleccionado
+          </div>
+
+          <div>
+            <span class="cuadro ocupado"></span>
+            Ocupado
+          </div>
+
+        </div>
+
+        <div class="mapa-asientos">
+
+          <div
+            class="fila-asientos"
+            *ngFor="let fila of filas">
+
+            <strong class="letra-fila">
+              {{ fila }}
+            </strong>
+
+            <button
+              type="button"
+              *ngFor="let numero of numerosAsientos"
+              class="asiento"
+              [class.seleccionado]="estaSeleccionado(fila + numero)"
+              [class.ocupado]="estaOcupado(fila + numero)"
+              [disabled]="estaOcupado(fila + numero)"
+              [attr.aria-label]="'Asiento ' + fila + numero"
+              (click)="seleccionarAsiento(fila + numero)">
+
+              {{ numero }}
+
+            </button>
+
+          </div>
+
+        </div>
+
+        <div class="resumen-asientos">
+
+          <p>
+            <strong>Asientos seleccionados:</strong>
+          </p>
+
+          <p *ngIf="asientosSeleccionados.length === 0">
+            No has seleccionado asientos.
+          </p>
+
+          <ion-chip
+            color="success"
+            *ngFor="let asiento of asientosSeleccionados">
+
+            <ion-label>{{ asiento }}</ion-label>
+
+          </ion-chip>
+
+        </div>
+
+      </ion-card-content>
+    </ion-card>
+
+
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Resumen de la reserva</ion-card-title>
+      </ion-card-header>
+
+      <ion-card-content>
+
+        <p>
+          <strong>Cliente:</strong>
+          {{ cliente || 'No indicado' }}
+        </p>
+
+        <p>
+          <strong>Función:</strong>
+          #{{ funcionActual.idFuncion }}
+        </p>
+
+        <p>
+          <strong>Fecha:</strong>
+          {{ funcionActual.fecha }}
+        </p>
+
+        <p>
+          <strong>Hora:</strong>
+          {{ funcionActual.hora }}
+        </p>
+
+        <p>
+          <strong>Asientos:</strong>
+          {{ asientosSeleccionados.length
+              ? asientosSeleccionados.join(', ')
+              : 'Ninguno' }}
+        </p>
+
+        <p>
+          <strong>Cantidad de entradas:</strong>
+          {{ cantidadEntradas }}
+        </p>
+
+        <p>
+          <strong>Precio por entrada:</strong>
+          Q{{ (funcionActual.precioEntrada || 0) | number:'1.2-2' }}
+        </p>
+
+        <div class="total-reserva">
+          <span>Total a pagar</span>
+          <strong>Q{{ total | number:'1.2-2' }}</strong>
+        </div>
+
+        <ion-button
+          expand="block"
+          class="boton-confirmar"
+          (click)="confirmarReserva()">
+
+          <ion-icon
+            name="checkmark-circle-outline"
+            slot="start">
+          </ion-icon>
+
+          Confirmar reserva
+
+        </ion-button>
+
+      </ion-card-content>
+    </ion-card>
+
+  </div>
+
+  <div *ngIf="vista === 'historial'">
+
+    <h2 class="titulo-historial">Historial de Reservas</h2>
+
+    <ion-card *ngFor="let reserva of historial">
+
+      <ion-card-header>
+
+        <ion-card-title>
+          Función #{{ reserva.idFuncion }}
+        </ion-card-title>
+
+        <ion-card-subtitle>
+          Reserva #{{ reserva.idReserva }}
+        </ion-card-subtitle>
+
+      </ion-card-header>
+
+      <ion-card-content>
+
+        <p>
+          <strong>Cliente:</strong>
+          {{ reserva.idCliente || 'Sin cliente' }}
+        </p>
+
+        <p>
+          <strong>Fecha y hora:</strong>
+          {{ reserva.fechaReserva | date}}
+        </p>
+
+        <p>
+          <strong>Cantidad de entradas:</strong>
+          {{ reserva.cantidadEntradas }}
+        </p>
+
+        <p>
+          <strong>Total a pagar:</strong>
+          Q{{ (reserva.totalAPagar || 0) | number:'1.2-2' }}
+        </p>
+
+        <ion-button
+          expand="block"
+          color="danger"
+          fill="outline"
+          (click)="cancelarReserva(reserva)">
+
+          <ion-icon
+            name="close-circle-outline"
+            slot="start">
+          </ion-icon>
+
+          Cancelar reserva
+
+        </ion-button>
+
+      </ion-card-content>
+
+    </ion-card>
+
+    <ion-card *ngIf="historial.length === 0">
+
+      <ion-card-content class="sin-reservas">
+        <ion-icon name="ticket-outline"></ion-icon>
+
+        <h3>No hay reservas registradas</h3>
+
+        <p>
+          Cuando confirmes una reserva, aparecerá aquí.
+        </p>
+
+        <ion-button
+          expand="block"
+          (click)="vista = 'reserva'">
+
+          Crear reserva
+
+        </ion-button>
+      </ion-card-content>
+
+    </ion-card>
+
+  </div>
+
+</ion-content>

@@ -1,0 +1,228 @@
+
+// .menu-reservas {
+//   display: grid;
+//   grid-template-columns: 1fr 1fr;
+//   gap: 8px;
+//   margin-bottom: 18px;
+// }
+
+// .menu-reservas ion-button {
+//   margin: 0;
+//   font-size: 12px;
+// }
+
+// ion-card {
+//   margin: 14px 0 20px;
+//   border-radius: 14px;
+//   box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+// }
+
+// ion-card-title {
+//   font-size: 20px;
+//   font-weight: 700;
+// }
+
+// ion-card-subtitle {
+//   margin-top: 7px;
+//   line-height: 1.5;
+// }
+
+// ion-item {
+//   --padding-start: 0;
+//   margin-bottom: 12px;
+// }
+
+// .informacion-funcion {
+//   background: var(--ion-color-light);
+//   padding: 12px;
+//   margin-top: 16px;
+//   border-radius: 10px;
+// }
+
+// .informacion-funcion p {
+//   margin: 9px 0;
+//   overflow-wrap: anywhere;
+// }
+
+// .pantalla-cine {
+//   text-align: center;
+//   padding: 12px;
+//   margin: 12px 8px 26px;
+//   border-radius: 50% 50% 8px 8px;
+//   background: #dce4ed;
+//   color: #263746;
+//   font-weight: bold;
+//   font-size: 13px;
+//   letter-spacing: 3px;
+//   box-shadow: 0 5px 12px rgba(0, 0, 0, 0.12);
+// }
+
+// .leyenda {
+//   display: flex;
+//   justify-content: center;
+//   flex-wrap: wrap;
+//   gap: 12px;
+//   margin-bottom: 24px;
+//   font-size: 11px;
+// }
+
+// .leyenda div {
+//   display: flex;
+//   align-items: center;
+//   gap: 5px;
+// }
+
+// .cuadro {
+//   width: 13px;
+//   height: 13px;
+//   display: inline-block;
+//   border-radius: 4px;
+// }
+
+// .disponible {
+//   background: #e2e8f0;
+//   border: 1px solid #94a3b8;
+// }
+
+// .seleccionado {
+//   background: #16a34a;
+// }
+
+// .ocupado {
+//   background: #dc2626;
+// }
+
+// .mapa-asientos {
+//   display: flex;
+//   flex-direction: column;
+//   gap: 12px;
+//   overflow-x: auto;
+//   padding: 4px 0;
+// }
+
+// .fila-asientos {
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   gap: 6px;
+// }
+
+// .letra-fila {
+//   width: 16px;
+//   text-align: center;
+//   margin-right: 3px;
+// }
+
+// .asiento {
+//   flex-shrink: 0;
+//   width: 30px;
+//   height: 32px;
+//   padding: 0;
+//   border: 1px solid #94a3b8;
+//   border-radius: 7px 7px 4px 4px;
+//   background: #e2e8f0;
+//   color: #1e293b;
+//   font-size: 12px;
+//   cursor: pointer;
+// }
+
+// .asiento.seleccionado {
+//   background: #16a34a;
+//   border-color: #15803d;
+//   color: white;
+// }
+
+// .asiento.ocupado {
+//   background: #dc2626;
+//   border-color: #b91c1c;
+//   color: white;
+//   opacity: 1;
+//   cursor: not-allowed;
+// }
+
+// .resumen-asientos {
+//   margin-top: 24px;
+//   padding-top: 12px;
+//   border-top: 1px solid var(--ion-color-light-shade);
+// }
+
+// .resumen-asientos p {
+//   overflow-wrap: anywhere;
+// }
+
+// .resumen-asientos ion-chip {
+//   margin: 4px;
+// }
+
+// .total-reserva {
+//   display: flex;
+//   align-items: center;
+//   justify-content: space-between;
+//   gap: 10px;
+//   margin: 22px 0;
+//   padding: 16px 12px;
+//   background: var(--ion-color-light);
+//   border-radius: 10px;
+//   color: var(--ion-color-primary);
+// }
+
+// .total-reserva strong {
+//   font-size: 22px;
+//   white-space: nowrap;
+// }
+
+// .boton-confirmar {
+//   margin-top: 12px;
+//   height: 48px;
+//   font-weight: bold;
+// }
+
+// .titulo-historial {
+//   font-size: 23px;
+//   font-weight: bold;
+//   margin: 24px 0 18px;
+// }
+
+// .estado-reserva {
+//   display: flex;
+//   align-items: center;
+//   gap: 8px;
+// }
+
+// .sin-reservas {
+//   text-align: center;
+//   padding: 28px 16px;
+// }
+
+// .sin-reservas ion-icon {
+//   font-size: 52px;
+//   color: var(--ion-color-medium);
+// }
+
+// .sin-reservas h3 {
+//   font-size: 18px;
+// }
+
+// .sin-reservas p {
+//   color: var(--ion-color-medium);
+//   line-height: 1.5;
+// }
+
+// @media (max-width: 360px) {
+//   .fila-asientos {
+//     gap: 4px;
+//   }
+
+//   .asiento {
+//     width: 27px;
+//     height: 30px;
+//   }
+
+//   .leyenda {
+//     gap: 7px;
+//   }
+
+//   .menu-reservas ion-button {
+//     font-size: 11px;
+//   }
+// }
